@@ -4,25 +4,25 @@ import java.util.* ;
 public class SetMatrixZeroes {
     public static void setZeros(int matrix[][]) {
         // Write your code here..
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[i].length; j++){
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int row[] = new int[n];
+        int col[] = new int[m]; 
+        Arrays.fill(row,0);
+        Arrays.fill(col,0);
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
                 if(matrix[i][j] == 0){
-                    for(int k = 0; k < matrix.length; k++){
-                        for(int l = 0; l < matrix[k].length; l++){
-                            if((k == i || l == j) && matrix[k][l] != 0)
-                                matrix[k][l] = -1;
-                        }
-                    }
+                    row[i] = 1;
+                    col[j] = 1;
                 }
             }
         }
-
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[i].length; j++){
-                if(matrix[i][j] == -1)
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(row[i] == 1 || col[j] == 1)
                     matrix[i][j] = 0;
             }
         }
     }
-
 }
